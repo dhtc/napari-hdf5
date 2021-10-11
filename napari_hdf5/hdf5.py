@@ -53,8 +53,10 @@ def reader_function(path):
     data_list = []
     for k, v in data.items():
         if v.shape[0] > (v.shape[-1] + 100):
-            v = np.transpose(v, list(range(v.shape[-1]-1, -1, -1)))
-        data_list.append((v, {'name':k}))
+            img = np.transpose(v, list(range(len(v.shape)-1, -1, -1)))
+        else:
+            img = v
+        data_list.append((img, {'name':k}))
     
     return data_list
     
