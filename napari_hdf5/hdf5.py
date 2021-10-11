@@ -31,8 +31,6 @@ def napari_get_reader(path):
 
 def npy_file_reader(path):
    array = np.load(path)
-   # return it as a list of LayerData tuples,
-   # here with no optional metadata
    return [(array,)]
 
 def reader_function(path):
@@ -52,21 +50,12 @@ def reader_function(path):
     import flammkuchen as fl
 
     data = fl.load(path)
-
-    if isinstance(data, np.ndarray):
-        return data, dict(name=path.stem)
-    #elif type(data) is dict:
-    #    return search_composite_data(data)
-    #else:
-    #    return
-
-
-def search_composite_data(path):
-    """Heuristics to find stacks in a composite file.
-    """
-
-    stacks = []
-#    for
+    data_list = []
+    for k, v in data.items():
+        data_list.append((v, {'name':k}))
+    
+    return data_list
+    
 
 
 
