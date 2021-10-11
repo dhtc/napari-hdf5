@@ -22,11 +22,16 @@ def napari_get_reader(path):
 
     # if we know we cannot read the file, we immediately return None.
     if str(path).endswith(".npy"):
-        return None
+        return npy_file_reader
 
     # otherwise we return the *function* that can read ``path``.
     return reader_function
 
+def npy_file_reader(path):
+   array = np.load(path)
+   # return it as a list of LayerData tuples,
+   # here with no optional metadata
+   return [(array,)]
 
 def reader_function(path):
     """Read an h5 file, with some heuristics on the content.
