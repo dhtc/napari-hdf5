@@ -23,9 +23,11 @@ def napari_get_reader(path):
     # if we know we cannot read the file, we immediately return None.
     if str(path).endswith(".npy"):
         return npy_file_reader
-
+    elif str(path).endswith('.h5'):
     # otherwise we return the *function* that can read ``path``.
-    return reader_function
+        return reader_function
+    else:
+        return None
 
 def npy_file_reader(path):
    array = np.load(path)
