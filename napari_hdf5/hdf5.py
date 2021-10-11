@@ -21,7 +21,7 @@ def napari_get_reader(path):
     path = Path(path)
 
     # if we know we cannot read the file, we immediately return None.
-    if path.endswith(".npy"):
+    if str(path).endswith(".npy"):
         return None
 
     # otherwise we return the *function* that can read ``path``.
@@ -46,7 +46,7 @@ def reader_function(path):
 
     data = fl.load(path)
 
-    if type(data) is np.ndarray:
+    if isinstance(data, np.ndarray):
         return data, dict(name=path.stem)
     #elif type(data) is dict:
     #    return search_composite_data(data)
@@ -59,7 +59,7 @@ def search_composite_data(path):
     """
 
     stacks = []
-    for
+#    for
 
 
 
